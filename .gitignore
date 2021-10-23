@@ -1,0 +1,10 @@
+# python
+__pycache__
+# env variables
+.env
+# todo
+todo.txt
+
+# certificates for https
+cert.pem
+key.pem
