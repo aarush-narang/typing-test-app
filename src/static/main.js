@@ -4,8 +4,8 @@ function getRandomQuoteAndRender() {
     const quoteRequest = new XMLHttpRequest()
     quoteRequest.open('GET', '/generateText')
     quoteRequest.addEventListener('load', (response) => {
-        // randomQuote = response.target.response
-        randomQuote = 'test'
+        randomQuote = response.target.response
+        // randomQuote = 'test'
         const wordsParent = document.getElementById('words')
         randomQuote.split('').forEach(letter => {
             const newLetter = document.createElement('letter')
