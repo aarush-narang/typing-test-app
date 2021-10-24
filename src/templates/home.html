@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="stylesheets/home.css">
+    <script type="text/javascript" src="../static/theme.js" defer></script>
+    <script type="text/javascript" src="../static/main.js" defer></script>
+    <script type="text/javascript" src="../static/stats.js" defer></script>
+    <title>Typing Test</title>
+</head>
+
+<body oncontextmenu="return false;">
+    <header id="header">
+        <label id="theme-switch">
+            <input id='checkbox' type="checkbox">
+            <div></div>
+        </label>
+    </header>
+    <div id="typingTestContainer">
+        <div id="container">
+            <timer id="timer">0</timer>
+            <input id="wordsInput" autocomplete="off" spellcheck="false">
+            <div id="words"></div>
+        </div>
+        <div id="stats">
+            <div id="wpm"></div>
+            <div id="accuracy"></div>
+            <input type="button" id="reset-test" value="Restart">
+        </div>
+    </div>
+</body>
+
+</html>
