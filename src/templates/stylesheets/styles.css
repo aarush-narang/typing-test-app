@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Urbanist&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
+#caps-warn-container {
+    display: flex;
+
+    min-width: 170px;
+    width: 20vw;
+    max-width: 200px;
+
+    height: 70px;
+
+    border-radius: 14px;
+
+    background-color: var(--secondary-color);
+    transition: 150ms ease-in;
+}
+#lock-icon {
+    width: 50px;
+    height: 50px;
+}
+#caps-text {
+
+}

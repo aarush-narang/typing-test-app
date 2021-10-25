@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="stylesheets/home.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/caret.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/text.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/themes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script type="text/javascript" src="../static/theme.js" defer></script>
     <script type="text/javascript" src="../static/main.js" defer></script>
     <script type="text/javascript" src="../static/stats.js" defer></script>
@@ -18,10 +22,18 @@
         </label>
     </header>
     <div id="typingTestContainer">
+        <div id="caps-warn-container" style="display: block;">
+            <div id="caps-text">
+                <i class="fas fa-lock" id="lock-icon"></i>
+                Caps Lock
+            </div>
+        </div>
         <div id="container">
             <timer id="timer">0</timer>
             <input id="wordsInput" autocomplete="off" spellcheck="false">
-            <div id="words"></div>
+            <div id="words">
+                <span id="caret"></span>
+            </div>
         </div>
         <div id="stats">
             <div id="wpm"></div>

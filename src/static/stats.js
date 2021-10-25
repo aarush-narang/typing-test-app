@@ -22,9 +22,9 @@ restartButton.addEventListener('click', () => {
 
 // dont allow inspecting or copying of text
 document.onkeydown = function (e) {
-    if (event.keyCode == 123) {
-        return false;
-    }
+    // if (event.keyCode == 123) {
+    //     return false;
+    // }
     if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
         return false;
     }
