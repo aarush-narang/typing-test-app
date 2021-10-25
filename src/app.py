@@ -14,4 +14,3 @@ app.register_blueprint(text_generator_routes.text_generator_router, url_prefix='
 
 if __name__ == '__main__':
     app.run(host=os.getenv('DOMAIN'), port=os.getenv('PORT'), ssl_context=('../cert.pem', '../key.pem'), debug=True) # certificates for https
-    # app.run(debug=True)

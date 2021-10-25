@@ -2,19 +2,18 @@
 let randomQuote
 
 function getRandomQuoteAndRender() {
-    // const quoteRequest = new XMLHttpRequest()
-    // quoteRequest.open('GET', '/generateText')
-    // quoteRequest.addEventListener('load', (response) => {
-    // randomQuote = response.target.response
-    randomQuote = 'the dog jumped over the fox the dog jumped over the fox the dog jumped over the fox the dog jumped over the fox'
+    const quoteRequest = new XMLHttpRequest()
+    quoteRequest.open('GET', '/generateText') // get random text from endpoint
+    quoteRequest.addEventListener('load', (response) => {
+    randomQuote = response.target.response
     const wordsParent = document.getElementById('words')
     randomQuote.split('').forEach(letter => {
-        const newLetter = document.createElement('letter')
+        const newLetter = document.createElement('letter') // create a new custom element for each letter
         newLetter.innerHTML = letter
         wordsParent.appendChild(newLetter)
     })
-    // })
-    // quoteRequest.send()
+    })
+    quoteRequest.send()
 }
 getRandomQuoteAndRender()
 
@@ -22,15 +21,15 @@ getRandomQuoteAndRender()
 const wordsInput = document.getElementById('wordsInput')
 const typingTestContainer = document.getElementById('typingTestContainer')
 typingTestContainer.addEventListener('click', () => {
-    if (document.activeElement != wordsInput) {
+    if (document.activeElement != wordsInput) { // onclick, if input box that needs to be typed in is not in focus, focus it
         wordsInput.focus()
     }
 })
-document.addEventListener('keydown', (event) => {
-    if (document.activeElement != wordsInput) {
+document.addEventListener('keydown', (event) => { 
+    if (document.activeElement != wordsInput) { // on keydown, if input box that needs to be typed in is not in focus, focus it
         wordsInput.focus()
     }
-    const capswarn = document.getElementById('caps-warn-container')
+    const capswarn = document.getElementById('caps-warn-container') // check if they have caps lock on
     if (event.getModifierState('CapsLock')) {
         capswarn.style.display = 'block'
     } else {

@@ -22,16 +22,16 @@ restartButton.addEventListener('click', () => {
 
 // dont allow inspecting or copying of text
 document.onkeydown = function (e) {
-    // if (event.keyCode == 123) {
+    // if (event.keyCode == 123) { // F12 key
     //     return false;
     // }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) {
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // CTRL + I
         return false;
     }
-    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) {
+    if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // CTRL + J
         return false;
     }
-    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
+    if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // CTRL + U
         return false;
     }
 }
