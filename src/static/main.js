@@ -31,7 +31,7 @@ document.addEventListener('keydown', (event) => {
     }
     const capswarn = document.getElementById('caps-warn-container') // check if they have caps lock on
     if (event.getModifierState('CapsLock')) {
-        capswarn.style.display = 'block'
+        capswarn.style.display = 'flex'
     } else {
         capswarn.style.display = 'none'
     }
