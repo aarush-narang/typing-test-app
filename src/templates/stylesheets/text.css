@@ -1,18 +1,47 @@
+/* formatting */
+#typingTestContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+#container {
+    min-width: 600px;
+    width: fit-content;
+    max-width: 800px;
+    user-select: none;
+}
+
+/* on smaller screens */
+@media screen and (max-width: 600px) {
+    /* letter {
+        font-size: calc(0.75em + 1vmin);
+    } */
+
+    #container {
+        min-width: 300px;
+        width: 40vw;
+        max-width: 500px;
+    }
+}
 /* letters, correct letters, and incorrect letters */
-letter,
 timer {
+    color: var(--timer-font-color);
+    font-size: calc(2em + 4vmin);
     transition: 150ms ease-in;
     font-family: Urbanist;
 }
 
-timer {
-    color: var(--timer-font-color);
-    font-size: calc(2em + 4vmin);
-}
-
 letter {
     color: var(--back-font-color);
-    font-size: calc(1em + 1vmin);
+    font-size: 23px;
+    transition: 150ms ease-in;
+    font-family: Roboto Mono;
+    margin-bottom: 10px;
+
+    line-height: 30px;
 }
 
 letter.correct {
@@ -23,6 +52,7 @@ letter.incorrect {
     color: var(--font-incorrect-color);
     text-decoration: underline;
 }
+
 
 /* where the words are going to be inputted */
 #wordsInput {
@@ -37,6 +67,10 @@ letter.incorrect {
     z-index: -1;
     cursor: default;
     pointer-events: none;
+}
+
+#words {
+    cursor: text;
 }
 
 /* stats displayer */
@@ -82,31 +116,4 @@ letter.incorrect {
     box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.2);
 }
 
-/* formatting */
-#typingTestContainer {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 70vh;
-}
 
-#container {
-    min-width: 600px;
-    width: fit-content;
-    max-width: 800px;
-    user-select: none;
-}
-
-/* on smaller screens */
-@media screen and (max-width: 600px) {
-    letter {
-        font-size: calc(0.75em + 1vmin);
-    }
-
-    #container {
-        min-width: 300px;
-        width: 40vw;
-        max-width: 500px;
-    }
-}
