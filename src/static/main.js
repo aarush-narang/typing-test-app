@@ -5,13 +5,13 @@ function getRandomQuoteAndRender() {
     const quoteRequest = new XMLHttpRequest()
     quoteRequest.open('GET', '/generateText') // get random text from endpoint
     quoteRequest.addEventListener('load', (response) => {
-    randomQuote = response.target.response
-    const wordsParent = document.getElementById('words')
-    randomQuote.split('').forEach(letter => {
-        const newLetter = document.createElement('letter') // create a new custom element for each letter
-        newLetter.innerHTML = letter
-        wordsParent.appendChild(newLetter)
-    })
+        randomQuote = response.target.response
+        const wordsParent = document.getElementById('words')
+        randomQuote.split('').forEach(letter => {
+            const newLetter = document.createElement('letter') // create a new custom element for each letter
+            newLetter.innerHTML = letter
+            wordsParent.appendChild(newLetter)
+        })
     })
     quoteRequest.send()
 }
@@ -25,7 +25,7 @@ typingTestContainer.addEventListener('click', () => {
         wordsInput.focus()
     }
 })
-document.addEventListener('keydown', (event) => { 
+document.addEventListener('keydown', (event) => {
     if (document.activeElement != wordsInput) { // on keydown, if input box that needs to be typed in is not in focus, focus it
         wordsInput.focus()
     }
@@ -59,53 +59,55 @@ wordsInput.addEventListener('input', () => {
 
 // when letters are inputted, mark them as correct or incorrect
 let totalTranslateY = 0
+let totalTranslateX = 0
 wordsInput.addEventListener('input', (event) => {
     const wordsContainer = document.getElementById('words')
     const caret = document.getElementById('caret')
     const stringArray = document.querySelectorAll('letter')
     const inputArray = document.querySelector('#wordsInput').value.split('')
     stringArray.forEach((char, index) => {
-        // console.log(inputArray.length*13.85, wordsContainer.clientWidth - 100)
         const character = inputArray[index]
-        console.log(caret.style.transform)
+
         if (!character) { // if the person is not at the character yet, it will be undefined. do not correct
             char.classList.remove('correct')
             char.classList.remove('incorrect')
-
-            // if they deleted all words in the input
-            if (inputArray.length === 0) {
-                caret.style.transform = `translate(0px, 0px)`
-            }
         } else if (character === stringArray[index].textContent) {
             char.classList.add('correct')
-            
-            // move the caret back/forth depending on what letter they are on
-            if (inputArray.length === 0) {
-                caret.style.transform = `translate(0px, 0px)`
-            } else {
-                if(inputArray.length*13.85 > wordsContainer.clientWidth - 100 && (!inputArray[index+1] && character === ' ')) {
-                    console.log('test')
-                    totalTranslateY+=30
-                    caret.style.transform = `translate(0px, ${totalTranslateY}px)`
-                }
-                caret.style.transform = `translate(${inputArray.length*13.85}px, ${totalTranslateY}px)`
-            }
+
         } else {
             char.classList.add('incorrect')
-
-            // move the caret back/forth depending on what letter they are on
-            if (inputArray.length === 0) {
-                caret.style.transform = `translate(0px, 0px)`
-            } else {
-                if(inputArray.length*13.85 > wordsContainer.clientWidth - 100 && (!inputArray[index+1] && character === ' ')) {
-                    console.log('test')
-                    totalTranslateY+=30
+        }
+        // move the caret back/forth depending on what letter they are on
+        if (inputArray.length === 0) {
+            // if they deleted all words in the input
+            caret.style.transform = `translate(0px, 0px)`
+            totalTranslateX = 0
+            totalTranslateY = 0
+        } else if (character && !inputArray[index + 1]) {
+            if (event.inputType === 'deleteContentBackward') {
+                // if it is the first character in the line
+                if (totalTranslateX <= '0' && (!inputArray[index + 1])) { // find better logic to tell if it is at the end of the line
+                    totalTranslateY -= 30
+                    totalTranslateX = wordsContainer.clientWidth
                     caret.style.transform = `translate(0px, ${totalTranslateY}px)`
                 }
-                caret.style.transform = `translate(${inputArray.length*13.85}px, ${totalTranslateY}px)`
+                totalTranslateX -= 13.85
+                caret.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px)`
+            } else {
+                // if it is the last character in the line
+                if (totalTranslateX > wordsContainer.clientWidth - 30 && (!inputArray[index + 1] && inputArray[index] === ' ')) { // find better logic to tell if it is at the end of the line
+                    totalTranslateY += 30
+                    totalTranslateX = 0
+                    caret.style.transform = `translate(0px, ${totalTranslateY}px)`
+                } else {
+                    totalTranslateX += 13.85
+                    caret.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px)`
+                }
             }
+            console.log(totalTranslateX, totalTranslateY)
+
         }
-        
+
     })
 
     if (stringArray.length === inputArray.length) {
