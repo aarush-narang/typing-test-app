@@ -88,7 +88,7 @@ wordsInput.addEventListener('input', (event) => {
                 // if it is the first character in the line
                 if (totalTranslateX <= '0' && (!inputArray[index + 1])) { // find better logic to tell if it is at the end of the line
                     totalTranslateY -= 30
-                    totalTranslateX = wordsContainer.clientWidth
+                    totalTranslateX = wordsContainer.clientWidth //
                     caret.style.transform = `translate(0px, ${totalTranslateY}px)`
                 }
                 totalTranslateX -= 13.85
