@@ -8,24 +8,25 @@
 }
 
 #container {
-    min-width: 600px;
-    width: fit-content;
-    max-width: 800px;
+    /* min-width: 600px; */
+    /* width: fit-content; */
+    width: 800px;
     user-select: none;
 }
 
 /* on smaller screens */
-@media screen and (max-width: 600px) {
-    /* letter {
+/* @media screen and (max-width: 600px) {
+    letter {
         font-size: calc(0.75em + 1vmin);
-    } */
+    }
 
     #container {
         min-width: 300px;
         width: 40vw;
         max-width: 500px;
     }
-}
+} */
+
 /* letters, correct letters, and incorrect letters */
 timer {
     color: var(--timer-font-color);

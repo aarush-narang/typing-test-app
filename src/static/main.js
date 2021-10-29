@@ -1,11 +1,13 @@
 // getting text and rendering
-let randomQuote
+let indecies
 
 function getRandomQuoteAndRender() {
     const quoteRequest = new XMLHttpRequest()
     quoteRequest.open('GET', '/generateText') // get random text from endpoint
     quoteRequest.addEventListener('load', (response) => {
-        randomQuote = response.target.response
+        res = JSON.parse(response.target.response)
+        const randomQuote = res.text
+        indecies = res.indecies
         const wordsParent = document.getElementById('words')
         randomQuote.split('').forEach(letter => {
             const newLetter = document.createElement('letter') // create a new custom element for each letter
@@ -95,7 +97,8 @@ wordsInput.addEventListener('input', (event) => {
                 caret.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px)`
             } else {
                 // if it is the last character in the line
-                if (totalTranslateX > wordsContainer.clientWidth - 30 && (!inputArray[index + 1] && inputArray[index] === ' ')) { // find better logic to tell if it is at the end of the line
+                //
+                if (index === indecies && (!inputArray[index + 1] && inputArray[index] === ' ')) { // find better logic to tell if it is at the end of the line
                     totalTranslateY += 30
                     totalTranslateX = 0
                     caret.style.transform = `translate(0px, ${totalTranslateY}px)`
