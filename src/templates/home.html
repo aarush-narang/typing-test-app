@@ -3,14 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="stylesheets/styles.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/caret.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/text.css">
-    <link rel="stylesheet" type="text/css" href="stylesheets/themes.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/caret.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/text.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='stylesheets/themes.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script type="text/javascript" src="../static/theme.js" defer></script>
-    <script type="text/javascript" src="../static/main.js" defer></script>
-    <script type="text/javascript" src="../static/stats.js" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}" defer></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/stats.js') }}" defer></script>
     <title>Typing Test</title>
 </head>
 
