@@ -1,12 +1,13 @@
 // getting text and rendering
 let indecies
+let randomQuote
 
 function getRandomQuoteAndRender() {
     const quoteRequest = new XMLHttpRequest()
     quoteRequest.open('GET', '/generateText') // get random text from endpoint
     quoteRequest.addEventListener('load', (response) => {
         res = JSON.parse(response.target.response)
-        const randomQuote = res.text
+        randomQuote = res.text
         indecies = res.indecies
         const wordsParent = document.getElementById('words')
         randomQuote.split('').forEach(letter => {
@@ -63,7 +64,6 @@ wordsInput.addEventListener('input', () => {
 let totalTranslateY = 0
 let totalTranslateX = 0
 wordsInput.addEventListener('input', (event) => {
-    const wordsContainer = document.getElementById('words')
     const caret = document.getElementById('caret')
     const stringArray = document.querySelectorAll('letter')
     const inputArray = document.querySelector('#wordsInput').value.split('')
@@ -75,7 +75,6 @@ wordsInput.addEventListener('input', (event) => {
             char.classList.remove('incorrect')
         } else if (character === stringArray[index].textContent) {
             char.classList.add('correct')
-
         } else {
             char.classList.add('incorrect')
         }
@@ -87,19 +86,22 @@ wordsInput.addEventListener('input', (event) => {
             totalTranslateY = 0
         } else if (character && !inputArray[index + 1]) {
             if (event.inputType === 'deleteContentBackward') {
-                // if it is the first character in the line
-                if (totalTranslateX <= '0' && (!inputArray[index + 1])) { // find better logic to tell if it is at the end of the line
+                // if it is the first character in the line, move the caret up
+                if (totalTranslateX <= '0' && (!inputArray[index + 1])) {
                     totalTranslateY -= 30
-                    totalTranslateX = wordsContainer.clientWidth //
-                    caret.style.transform = `translate(0px, ${totalTranslateY}px)`
+                    const line = totalTranslateY/30 // what line # is the previous line
+                    const string = randomQuote.slice(indecies[line-1]+1, indecies[line]) //finds the string of the line they backspaced into
+                    totalTranslateX = string.length*13.85 // length of that string * by the pixel value width each character is
+                    caret.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px)`
+                } else {
+                    totalTranslateX -= 13.85
+                    caret.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px)`
                 }
-                totalTranslateX -= 13.85
-                caret.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px)`
+                
             } else {
                 // if it is the last character in the line
-                //
-                if (index === indecies && (!inputArray[index + 1] && inputArray[index] === ' ')) { // find better logic to tell if it is at the end of the line
-                    totalTranslateY += 30
+                if (indecies.includes(index)) { // if the current index they are on in the string is in the indecies array (which includes indecies for line endings)
+                    totalTranslateY += 30 // move caret to next line
                     totalTranslateX = 0
                     caret.style.transform = `translate(0px, ${totalTranslateY}px)`
                 } else {
@@ -107,10 +109,7 @@ wordsInput.addEventListener('input', (event) => {
                     caret.style.transform = `translate(${totalTranslateX}px, ${totalTranslateY}px)`
                 }
             }
-            console.log(totalTranslateX, totalTranslateY)
-
         }
-
     })
 
     if (stringArray.length === inputArray.length) {
