@@ -19,3 +19,7 @@ And you're finished!
 ## How to play
 
 Just start typing! Once you start, the timer will also start and when you finish the paragraph, it will calculate your typing speed in WPM and your accuracy. 
+
+## Additionally
+
+You can also click the switch in the top right corner to switch between light and dark mode.
